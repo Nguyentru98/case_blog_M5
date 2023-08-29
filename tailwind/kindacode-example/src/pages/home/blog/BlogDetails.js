@@ -4,17 +4,17 @@ import {useEffect} from "react";
 import {blogDetail} from "../../../service/blogSevice";
 
 export  default function  BlogDetails() {
-    const dispatch = useDispatch();
-    const navigate = useNavigate()
-    const blogs = useSelector(state => {
-        console.log('BlogDetails', state.blogs.blogs)
-        return state.blogs.blogs;
-
-    })
-    useEffect(() => {
-        dispatch(blogDetail());
-    })
-    console.log(blogDetail())
+    // const dispatch = useDispatch();
+    // const navigate = useNavigate()
+    // const blogs = useSelector(state => {
+    //     console.log('BlogDetails', state.blogs.blogs)
+    //     return state.blogs.blogs;
+    //
+    // })
+    // useEffect(() => {
+    //     dispatch(blogDetail());
+    // })
+    // console.log(blogDetail())
     return(
         <>
             <div
