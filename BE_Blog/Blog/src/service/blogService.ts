@@ -40,6 +40,13 @@ class BlogService {
     deleteBlog = async (id) => {
         return await this.repository.delete(id)
     }
+    findById = async (id)=>{
+        return await  this.repository.find({
+            where :{
+                id : id
+            }
+        })
+    }
 
 }
 export default new BlogService();

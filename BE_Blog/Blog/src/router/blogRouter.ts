@@ -4,6 +4,8 @@ import auth from "../middleware/jwt";
 
 const BlogRouter = Router();
 // TradeRouter.use(auth)
+BlogRouter.get('/:id', blogController.findById)
+
 BlogRouter.get('', blogController.getAll)
 BlogRouter.post('', blogController.addBlog)
 BlogRouter.put('/:id', blogController.updateBlog)

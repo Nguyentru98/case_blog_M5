@@ -23,6 +23,10 @@ class BlogController {
         let data = await this.BlogService.delete(req.params.id)
         res.json("Xoa Blog thanh cong");
     }
+    findById = async(req: Request, res: Response) => {
+        let data = await this.BlogService.findById(req.params.id)
+        res.json(data);
+    }
 
 }
 export default new BlogController();
