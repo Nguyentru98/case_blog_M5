@@ -13,14 +13,14 @@ class BlogController {
     }
     addBlog = async (req: Request, res: Response) => {
         let data = await this.BlogService.addBlog(req.body)
-        res.json("them Blog thanh cong");
+        res.json(data);
     }
     updateBlog =async (req: Request ,res: Response) => {
         let data = await this.BlogService.updateBlog(req.params.id, req.body)
         res.json("sua Blog thanh cong");
     }
     deleteBlog = async(req: Request, res: Response) => {
-        let data = await this.BlogService.delete(req.params.id)
+        let data = await this.BlogService.deleteBlog(req.params.id)
         res.json("Xoa Blog thanh cong");
     }
     findById = async(req: Request, res: Response) => {

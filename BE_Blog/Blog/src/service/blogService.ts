@@ -29,7 +29,11 @@ class BlogService {
     // }
 
     getAll = async () => {
-        return await this.repository.find()
+        return await this.repository.find({
+            relations : {
+                user : true
+            }
+        })
     }
     addBlog = async (blog) => {
         await this.repository.save(blog)
@@ -42,6 +46,9 @@ class BlogService {
     }
     findById = async (id)=>{
         return await  this.repository.find({
+            relations : {
+                user : true
+            },
             where :{
                 id : id
             }

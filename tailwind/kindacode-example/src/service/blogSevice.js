@@ -13,6 +13,7 @@ export const addBlog = createAsyncThunk(
     'blogs/addBlog',
     async (data) => {
         const res = await customAxios.post('http://localhost:3001/blog', data);
+        console.log(data)
         return data
     }
 )

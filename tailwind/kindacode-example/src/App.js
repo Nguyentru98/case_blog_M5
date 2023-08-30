@@ -24,7 +24,7 @@ function App() {
               <Route path={'home'} element={<Home/>}>
                   <Route path={''} element={<ListBlog/>}/>
                   <Route path={'add'} element={<AddBlog/>}/>
-                  <Route path={'blogDetails'} element={<BlogDetails/>}/>
+                  <Route path={'blogDetails/:id'} element={<BlogDetails/>}/>
                   <Route path={'blogManage'} element={<BlogMange/>}/>
               </Route>
           </Routes>

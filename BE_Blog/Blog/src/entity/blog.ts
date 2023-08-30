@@ -10,9 +10,6 @@ export class Blog {
     @PrimaryGeneratedColumn()
     id: number;
 
-    @Column({type: "int"})
-    userId: number;
-
     @Column({type: "varchar", length: 255})
     title: string;
 
@@ -21,6 +18,9 @@ export class Blog {
 
     @Column({type: "date"})
     publishDate: number;
+
+    @Column({type: "text"})
+    image: string;
 
     @ManyToOne(() => User, (user) => user.id)
     user: User;

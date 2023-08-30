@@ -7,9 +7,9 @@
     const navigation = [
 
         { name: 'Home', href: '/home', current: true },
-        { name: 'List Blog', href: '/home', current: true },
+        // { name: 'List Blog', href: '/home', current: true },
         { name: 'Add Blog', href: '/home/add', current: true },
-        { name: 'Blog Manage', href: 'home/blogManage', current: false },
+        { name: 'Blog Manage', href: 'blogManage', current: false },
     ]
 
     function classNames(...classes) {
