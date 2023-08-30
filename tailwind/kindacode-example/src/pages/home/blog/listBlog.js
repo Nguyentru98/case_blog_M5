@@ -21,7 +21,7 @@ export default function ListBlog() {
         <>
             {
                 blogs.map((item, index) => (
-                    <div className={'p-2'} >
+                    <div className={'p-2'} key={index}>
                         <div
                             className=" bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 mt-20 w-max h-max">
                             <a href="#">

@@ -9,6 +9,7 @@ import ListBlog from "./pages/home/blog/listBlog";
 import BlogDetails from "./pages/home/blog/BlogDetails";
 import BlogMange from "./pages/home/blog/blogMange";
 import AddBlog from "./pages/home/blog/addBlog";
+import EditBlog from './pages/home/blog/editBlog';
 
 
 
@@ -24,6 +25,7 @@ function App() {
               <Route path={'home'} element={<Home/>}>
                   <Route path={''} element={<ListBlog/>}/>
                   <Route path={'add'} element={<AddBlog/>}/>
+                  <Route path={'edit/:id'} element={<EditBlog/>}/>
                   <Route path={'blogDetails/:id'} element={<BlogDetails/>}/>
                   <Route path={'blogManage'} element={<BlogMange/>}/>
               </Route>

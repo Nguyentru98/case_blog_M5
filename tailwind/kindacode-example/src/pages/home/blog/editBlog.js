@@ -1,21 +1,29 @@
-import {Link, useNavigate} from "react-router-dom";
-import {Field, Form, Formik} from "formik";
-import {useDispatch, useSelector} from "react-redux";
-import {addBlog,getBlog} from "../../../service/blogSevice";
-import { useState } from "react";
-import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
+import {Link, useNavigate, useParams} from "react-router-dom";
+import { Field, Form, Formik } from "formik";
+import { useDispatch, useSelector } from "react-redux";
+import {useEffect, useState} from "react";
+import { getDownloadURL, ref, uploadBytesResumable } from "firebase/storage";
+import { addBlog, blogDetail, getBlog, updateBlog } from "../../../service/blogSevice";
 import storage from "../../../firebaseConfig";
 
-export default function AddBlog() {
-    const dispatch = useDispatch()
-    const navigate = useNavigate()
+export default function EditBlog() {
+    const dispatch = useDispatch();
+    const navigate = useNavigate();
+    const [blog, setBlog] = useState(null);
+    const {id} = useParams()
     const [fileUpload, setFileUpload] = useState('');
     const [percent, setPercent] = useState('')
-    const user = useSelector(state => {
-        return state.user.user
-    })
-    // const userId = user.message.token["idUser"]
-    const handleAdd = (values) => {
+
+    useEffect(()=>{
+        dispatch(blogDetail(id)).then((res)=>{
+            setBlog(res.payload.data);
+            console.log(res.payload.data, blog, 'ressssssssssssssss');
+
+        });
+    },[])
+
+    const handleUpdate = (values) => {
+        console.log(values, 'valuesvaluesvaluesvaluesvalues');
         const storageRef = ref(storage, `/files/${fileUpload.name}`)
         const uploadTask = uploadBytesResumable(storageRef, fileUpload);
 
@@ -35,8 +43,9 @@ export default function AddBlog() {
                 getDownloadURL(uploadTask.snapshot.ref).then((url) => {
                     console.log(values, 666666666666666);
                     const postData = { ...values, image: url }
-                    console.log(postData, 'url');
-                    dispatch(addBlog(postData)).then((res)=>{
+                    console.log(id, postData, 'url');
+                    dispatch(updateBlog({id, postData})).then((res)=>{
+                        console.log(res, 'update ok');
                         dispatch(getBlog()).then(()=>{
                             navigate('/home')
                         })
@@ -47,12 +56,14 @@ export default function AddBlog() {
         )
 
     }
-    return(
+
+    console.log(blog, 'blog');
+    return (
         <>
             <div className="mt-20"></div>
-            <Formik initialValues={{title:'',content:'',publishDate:'', image:'',user: {id: 1}}}
+            <Formik enableReinitialize initialValues={{title: blog?.title,content: blog?.content,publishDate: blog?.publishDate, image:'',user: {id: 1}}}
                     onSubmit={(values)=>{
-                        handleAdd(values)
+                        handleUpdate(values)
                     }}>
 
             <Form >
@@ -71,9 +82,17 @@ export default function AddBlog() {
                 <div className="mb-6">
                     <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white" htmlFor="file_input">Upload file Image</label>
                     <Field name={'image'} className="block w-3/4 text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400" id="file_input" type="file" onChange={(event) => {
+                        console.log(event.currentTarget.files[0], 'event.currentTarget.files[0]');
                         setFileUpload(event.currentTarget.files[0]);
                         }} />
                     <p>{percent} "% done"</p>
+                    <div
+                            className=" bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 w-max h-max">
+                            <a href="#">
+                                <img className="rounded-t-lg" src={(blog?.image)}
+                                     alt=""/>
+                            </a>
+                    </div>
                 </div>
                 {/*<div>*/}
                 {/*    <label htmlFor="message" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Contents</label>*/}
@@ -83,5 +102,5 @@ export default function AddBlog() {
             </Form>
             </Formik>
         </>
-    )
+    );
 }

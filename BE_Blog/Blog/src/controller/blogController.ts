@@ -1,4 +1,4 @@
-import {Request, response, Response} from "express";
+import {request, Request, response, Response} from "express";
 import BlogService from "../service/blogService";
 
 class BlogController {
@@ -12,10 +12,14 @@ class BlogController {
         res.json(data);
     }
     addBlog = async (req: Request, res: Response) => {
+        console.log(req.body, 'req.body');
+        
         let data = await this.BlogService.addBlog(req.body)
         res.json(data);
     }
-    updateBlog =async (req: Request ,res: Response) => {
+    updateBlog = async (req: Request ,res: Response) => {
+        console.log(req.body, 'reqqqqqqqqqqqqq');
+        
         let data = await this.BlogService.updateBlog(req.params.id, req.body)
         res.json("sua Blog thanh cong");
     }
@@ -27,6 +31,5 @@ class BlogController {
         let data = await this.BlogService.findById(req.params.id)
         res.json(data);
     }
-
 }
 export default new BlogController();

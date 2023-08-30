@@ -8,6 +8,7 @@ BlogRouter.get('/:id', blogController.findById)
 
 BlogRouter.get('', blogController.getAll)
 BlogRouter.post('', blogController.addBlog)
+BlogRouter.post('upload', blogController.addBlog)
 BlogRouter.put('/:id', blogController.updateBlog)
 BlogRouter.delete('/:id', blogController.deleteBlog)
 

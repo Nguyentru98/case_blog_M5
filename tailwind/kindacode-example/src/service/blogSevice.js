@@ -31,3 +31,10 @@ export const blogDetail = createAsyncThunk(
         return res
     }
 )
+export const updateBlog = createAsyncThunk(
+    'blogs/updateBlog',
+    async (data) =>{
+        const res  = await axios.put(`http://localhost:3001/blog/${data.id}`, data.postData)
+        return res
+    }
+)

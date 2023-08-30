@@ -45,7 +45,7 @@ class BlogService {
         return await this.repository.delete(id)
     }
     findById = async (id)=>{
-        return await  this.repository.find({
+        return await  this.repository.findOne({
             relations : {
                 user : true
             },
