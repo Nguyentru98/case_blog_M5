@@ -1,5 +1,5 @@
 import {Link, useNavigate} from "react-router-dom";
-import {useDispatch, useSelector} from "react-redux";
+import {useDispatch} from "react-redux";
 // import {useEffect} from "react";
 import {login} from "../../service/userService";
 import {Field, Form, Formik} from "formik";
@@ -23,8 +23,7 @@ export default function Login() {
         <Formik initialValues={{username:'',password:''}}
                     onSubmit={(values)=>{
                         handleLogin(values)
-                    }}>
-                        
+                    }}>             
         <div className="flex min-h-full flex-1 flex-col justify-center px-6 py-12 lg:px-8">
                 <div className="sm:mx-auto sm:w-full sm:max-w-sm">
                     <img
@@ -61,9 +60,9 @@ export default function Login() {
                                     Password
                                 </label>
                                 <div className="text-sm">
-                                    <a href="#" className="font-semibold text-indigo-600 hover:text-indigo-500">
+                                    <Link to={"#"} className="font-semibold text-indigo-600 hover:text-indigo-500">
                                         Forgot password?
-                                    </a>
+                                    </Link>
                                 </div>
                             </div>
                             <div className="mt-2">
@@ -89,9 +88,9 @@ export default function Login() {
 
                     <p className="mt-10 text-center text-sm text-gray-500">
                         Not a member?{' '}
-                        <a href="#" className="font-semibold leading-6 text-indigo-600 hover:text-indigo-500">
+                        <Link to={"#"} className="font-semibold leading-6 text-indigo-600 hover:text-indigo-500">
                             Start a 14 day free trial
-                        </a>
+                        </Link>
                     </p>
                 </div>
             </div>
