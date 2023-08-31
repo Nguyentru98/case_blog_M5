@@ -34,10 +34,9 @@ export  default function  BlogDetails() {
         <>
             <div
                 className="max-w-3/4 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 mt-20 w-max h-max">
-                <a href="#">
-                    <img className="rounded-t-lg" src="https://flowbite.com/docs/images/blog/image-1.jpg"
-                         alt=""/>
-                </a>
+                <div>
+                    <img className="rounded-t-lg" src={data.image} alt=""/>
+                </div>
                 <div className="p-5">
                     <div className="flex">
                         <div className="">
