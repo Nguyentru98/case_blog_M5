@@ -9,14 +9,17 @@ export default function Login() {
     const navigate = useNavigate();
     const handleLogin = async (values) => {
         let a = await dispatch(login(values))
-         if (a.payload.data === "User is not exist"){
+        console.log('a', a.payload.data.message)
+        if (a.payload.data.message.token === "User is not exist") {
             alert("dang nhap ko thanh cong")
             navigate("/")
-        }else {
-            alert("dang nhap thanh cong")
+        } else if (a.payload.data.message.token === "Password is wrong") {
+            alert("sai mk")
+            navigate("/")
+        } else {
+            await dispatch(login(values))
             navigate("/home")
         }
-
     }
     return (
         <>
@@ -85,11 +88,10 @@ export default function Login() {
                             </button>
                         </div>
                     </Form>
-
                     <p className="mt-10 text-center text-sm text-gray-500">
                         Not a member?{' '}
-                        <Link to={"#"} className="font-semibold leading-6 text-indigo-600 hover:text-indigo-500">
-                            Start a 14 day free trial
+                        <Link to={"/register"} className="font-semibold leading-6 text-indigo-600 hover:text-indigo-500">
+                        Go to Register
                         </Link>
                     </p>
                 </div>

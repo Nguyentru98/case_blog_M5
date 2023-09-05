@@ -66,7 +66,7 @@ export  default function  BlogDetails() {
                         </div>
 
                     <div className="w-6/12">
-                        <p className="mb-3 font-normal text-gray-700 dark:text-gray-400 w-3/4 " >{data.content}</p>
+                        <p className="mb-3 font-normal text-gray-700 dark:text-gray-400 w-2/4 " >{data.content}</p>
                     </div>
 
                     {/*<Link to={"/home/BlogDetails"}>*/}

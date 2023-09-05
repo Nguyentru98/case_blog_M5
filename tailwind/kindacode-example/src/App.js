@@ -7,9 +7,9 @@ import Home from "./pages/home/home";
 import Login from "./pages/home/login"
 import ListBlog from "./pages/home/blog/listBlog";
 import BlogDetails from "./pages/home/blog/BlogDetails";
-import BlogMange from "./pages/home/blog/blogMange";
 import AddBlog from "./pages/home/blog/addBlog";
 import EditBlog from './pages/home/blog/editBlog';
+import Register from './pages/home/register';
 
 
 
@@ -22,14 +22,15 @@ function App() {
       <>
           <Routes>
             <Route path={''} element={<Login/>}/>
+            <Route path={'register'} element={<Register/>}/>
               {user != null}
               <Route path={'home'} element={<Home/>}>
                   <Route path={''} element={<ListBlog/>}/>
                   <Route path={'add'} element={<AddBlog/>}/>
                   <Route path={'edit/:id'} element={<EditBlog/>}/>
                   <Route path={'blogDetails/:id'} element={<BlogDetails/>}/>
-                  <Route path={'blogManage'} element={<BlogMange/>}/>
-              </Route>
+                 
+             </Route>
           </Routes>
       </>
   );

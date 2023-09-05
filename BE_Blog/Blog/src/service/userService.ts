@@ -10,6 +10,9 @@ class UserService {
     constructor() {
         this.Repository = AppDataSource.getRepository(User);
     }
+    getAll = async () => {
+        return await this.Repository.find()
+    }
     register = async (user) => {
         user.password = await bcrypt.hash(user.password, 10);
         return this.Repository.save(user);
@@ -20,24 +23,31 @@ class UserService {
         if (!userFind) {
             return 'User is not exist'
         } else {
-            let passWordCompare =   bcrypt.compare(user.password, userFind.password);
+            let passWordCompare = bcrypt.compare(user.password, userFind.password);
             if (passWordCompare) {
                 let payload = {
                     idUser: userFind.id,
                     username: userFind.username,
                     role: 'admin'
+                    // image : userFind.image
                 }
-                return {
-                    access_token: jwt.sign(payload, SECRET, {
-                        expiresIn: 36000 * 10 * 100
-                    }),
-                    username: userFind.username,
-                    password: userFind.password
-                }
+                let token = jwt.sign(payload, SECRET, {
+                    expiresIn: 36000 * 10 * 100
+                })
+
+                payload["token"]= token
+                return payload
             } else {
                 return 'Password is wrong'
             }
         }
+    }
+    findById = async (id) => {
+        return await this.Repository.find(
+            {where: {id: id}})
+    }
+    update = async (id, data) => {
+        return await this.Repository.update(id, data)
     }
 }
 export default new UserService();

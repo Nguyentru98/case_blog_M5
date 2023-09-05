@@ -10,7 +10,7 @@ export const auth = (req, res, next) => {
                 if (err) {
                     res.status(401).json({
                         error: err.message,
-                        message: 'You are anonymous'
+                        message: ''
                     })
                 } else {
                     req.decode = payload;
@@ -19,12 +19,12 @@ export const auth = (req, res, next) => {
             })
         } else {
             res.status(401).json({
-                message: 'You are anonymous'
+                message: ''
             })
         }
     } else {
         res.status(401).json({
-            message: 'You are anonymous'
+            message: ''
         })
     }
 }

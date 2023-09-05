@@ -8,3 +8,10 @@ export  const login = createAsyncThunk(
         return res;
     }
 );
+export const register = createAsyncThunk(
+    'user/register',
+    async (data) =>{
+        const res = await axios.post('http://localhost:3001/user/register', data);
+        return res.data
+
+    })

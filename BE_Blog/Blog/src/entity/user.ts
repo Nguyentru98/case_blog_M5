@@ -10,5 +10,8 @@ export class User {
 
     @Column({type: 'varchar'})
     password: string
+    
+    @Column({type: 'longtext', nullable: true})
+    image : string;
 
 }
